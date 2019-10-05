@@ -115,6 +115,8 @@ trait Encryptable
 
     public function relationsToArray() {
        
+        $attributes = parent::attributesToArray();
+        
         foreach ($attributes as $key => $attribute) {
             if ($this->encryptable($key)) {
                 $attributes[$key] = $this->decryptAttribute($attribute);
