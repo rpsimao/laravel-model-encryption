@@ -101,7 +101,7 @@ trait Encryptable
     public function attributesToArray() {
         $attributes = parent::attributesToArray();
 
-        foreach ($attributes as $key => $attribute) {
+        foreach ($attributes as $attribute) {
             if ($this->encryptable($key)) {
                 $attributes[$key] = $this->decryptAttribute($attribute);
             }
@@ -117,7 +117,7 @@ trait Encryptable
        
         $attributes = parent::attributesToArray();
         
-        foreach ($attributes as $key => $attribute) {
+        foreach ($attributes as $attribute) {
             if ($this->encryptable($key)) {
                 $attributes[$key] = $this->decryptAttribute($attribute);
             }
