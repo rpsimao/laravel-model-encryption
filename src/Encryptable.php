@@ -98,6 +98,34 @@ trait Encryptable
 
         return $value;
     }
+    public function attributesToArray() {
+        $attributes = parent::attributesToArray();
+
+        foreach ($attributes as $key => $attribute) {
+            if ($this->encryptable($key)) {
+                $attributes[$key] = $this->decryptAttribute($attribute);
+            }
+            if ($this->isCamelcase($key)){
+                $attributes[$key] = $this->camelCaseAttribute($attributes[$key]);
+            }
+        }
+
+        return $attributes;
+    }
+
+    public function relationsToArray() {
+       
+        foreach ($attributes as $key => $attribute) {
+            if ($this->encryptable($key)) {
+                $attributes[$key] = $this->decryptAttribute($attribute);
+            }
+            if ($this->isCamelcase($key)){
+                $attributes[$key] = $this->camelCaseAttribute($attributes[$key]);
+            }
+        }
+
+        return $attributes;
+    }
 
 
     /**
